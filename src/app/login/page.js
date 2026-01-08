@@ -19,7 +19,7 @@ export default function Login() {
       const res = await login({ phone, password }).unwrap();
       localStorage.setItem("token", res.token);
       dispatch(setCredentials({ token: res.token }));
-      router.push("/dashboard");
+      router.push("/");
     } catch {
       alert("Invalid login");
     }
