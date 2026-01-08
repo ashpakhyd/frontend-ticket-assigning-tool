@@ -1,8 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { logout } from "@/store/slices/authSlice";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar({ open, onClose }) {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push("/login");
+    onClose();
+  };
+
   return (
     <>
       <div
@@ -18,6 +30,12 @@ export default function Sidebar({ open, onClose }) {
           <Link href="/tickets" onClick={onClose}>Tickets</Link>
           <Link href="/tickets/create" onClick={onClose}>Create Ticket</Link>
         </nav>
+
+        <div className="sidebar-footer">
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       </aside>
     </>
   );
