@@ -1,88 +1,123 @@
 .dash-section {
     padding: 1rem;
-  }
-  
-  /* Stat cards */
-  .stat-grid {
+    background: #ffffff; /* Match light theme background */
+    border: 1px solid #e5e7eb; /* Subtle border for separation */
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Light shadow */
+}
+
+/* Stat cards grid */
+.stat-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-  
-  .stat-card {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Minimum 150px, maximum 1 fraction of available space */
+    gap: 1rem; /* Spacing between tiles */
     padding: 1rem;
-    border-radius: 1rem;
-    backdrop-filter: blur(16px);
-    background: rgba(255,255,255,0.16);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+/* Stat card styles */
+.stat-card {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background: #ffffff; /* Light card background */
+    border: 1px solid rgba(59, 130, 246, 0.25); /* Subtle border */
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.12), 0 8px 20px rgba(0, 0, 0, 0.05); /* Light shadow */
     text-align: center;
-  }
-  
-  .stat-card h2 {
+    color: #1f2937; /* Neutral dark text color */
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Slightly elevated shadow on hover */
+}
+
+.stat-card h2 {
     font-size: 1.3rem;
     font-weight: 700;
-  }
-  
-  .stat-card p {
-    font-size: 0.75rem;
-    opacity: 0.85;
-  }
-  
-  /* Glass panels */
-  .glass-panel {
+    color: #111827; /* Darker heading color */
+}
+
+.stat-card p {
+    font-size: 0.85rem;
+    color: #6b7280; /* Subtle text color */
+}
+
+/* Active and interactive states */
+.stat-card.active {
+    outline: 2px solid rgba(59, 130, 246, 0.25); /* Subtle outline */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Softer shadow */
+}
+
+.stat-card:active {
+    transform: scale(0.96);
+}
+
+/* Responsive glass panels */
+.glass-panel {
     padding: 1rem;
-    border-radius: 1.25rem;
-    backdrop-filter: blur(18px);
-    background: rgba(255,255,255,0.14);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  }
-  
-  .glass-panel h3 {
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.8); /* Light glass effect */
+    border: 1px solid #e5e7eb; /* Subtle border */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    color: #1f2937; /* Neutral dark text color */
+}
+
+.glass-panel h3 {
     font-size: 1rem;
     margin-bottom: 0.75rem;
-  }
-  
-  /* Chart */
-  .chart-wrap {
+    color: #111827; /* Darker heading color */
+}
+
+/* Chart */
+.chart-wrap {
     display: flex;
     justify-content: center;
-  }
-  
-  /* Lists */
-  .list {
+}
+
+/* Lists */
+.list {
     display: grid;
-    gap: 0.6rem;
-  }
-  
-  .list-card {
+    gap: 0.75rem;
+}
+
+.list-card {
     padding: 0.75rem;
     border-radius: 0.75rem;
-    background: rgba(0,0,0,0.25);
-  }
-  
-  .name {
+    background: #ffffff; /* Light card background */
+    border: 1px solid #e5e7eb; /* Subtle border */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    color: #1f2937; /* Neutral dark text color */
+}
+
+.name {
     font-size: 0.9rem;
     font-weight: 600;
-  }
-  
-  .meta {
+    color: #111827; /* Darker text */
+}
+
+.meta {
     display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
-    opacity: 0.85;
-  }
-  .stat-card {
-    cursor: pointer;
-    border: none;
-    color: #fff;
-  }
-  
-  .stat-card.active {
-    outline: 2px solid rgba(255,255,255,0.6);
-    box-shadow: 0 0 0 3px rgba(106,92,255,0.4);
-  }
-  
-  .stat-card:active {
-    transform: scale(0.96);
-  }
-  
+    color: #6b7280; /* Subtle text color */
+}
+
+/* Add a container for the row */
+.row {
+    display: flex;
+    justify-content: space-between; /* Align items to the left and right */
+    align-items: center; /* Vertically center the items */
+    padding: 1rem 0; /* Add some spacing */
+}
+
+/* Style for the left and right items */
+.row .left {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827; /* Neutral dark text color */
+}
+
+.row .right {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827; /* Neutral dark text color */
+}

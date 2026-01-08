@@ -1,3 +1,6 @@
+/* =========================
+   RESET & BASE
+========================= */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,46 +9,60 @@
 
 html,
 body {
+  min-height: 100%;
   font-family: inherit;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-
-html,
 body {
-  min-height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
+/* =========================
+   DEFAULT LIGHT THEME
+========================= */
 body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+/* =========================
+   OPTIONAL ANIMATED BG (DISABLED)
+   👉 enable via: body.classList.add("animated-bg")
+========================= */
+body.animated-bg {
   background: linear-gradient(
     120deg,
     #1d2671,
-    #c33764,
-    #0f2027
+    #d794a9,
+    #55676f
   );
   background-size: 300% 300%;
   animation: gradientMove 18s ease infinite;
-  color: #fff;
+  color: #ffffff;
 }
 
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-
-/* Font smoothing (important for premium look) */
-body {
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
 
 /* =========================
-   BASE BUTTON (Universal)
+   BUTTONS (UNIVERSAL)
 ========================= */
 .btn {
+  position: relative;
   height: 3rem;
   min-width: 3rem;
   padding: 0 1.25rem;
@@ -67,62 +84,56 @@ body {
     opacity 0.18s ease;
 }
 
-/* Touch feedback */
 .btn:active {
   transform: scale(0.96);
 }
 
-/* Disabled */
 .btn:disabled {
   opacity: 0.6;
   pointer-events: none;
 }
+
 .btn-primary {
   background: linear-gradient(135deg, #6a5cff, #4fc3ff);
   color: #fff;
-  box-shadow: 0 10px 25px rgba(79,195,255,0.4);
+  box-shadow: 0 10px 25px rgba(79, 195, 255, 0.4);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 14px 35px rgba(79,195,255,0.55);
+  box-shadow: 0 14px 35px rgba(79, 195, 255, 0.55);
 }
+
 .btn-secondary {
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
   color: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
+
 .btn-danger {
   background: linear-gradient(135deg, #ef4444, #dc2626);
   color: #fff;
-  box-shadow: 0 10px 25px rgba(239,68,68,0.4);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
 }
+
 .btn-success {
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: #fff;
-  box-shadow: 0 10px 25px rgba(34,197,94,0.45);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.45);
 }
+
 .btn-ghost {
   background: transparent;
-  color: #cddcff;
+  color: #2563eb;
 }
 
 .btn-ghost:hover {
   text-decoration: underline;
 }
-.btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
 
-.btn:active::after {
-  opacity: 1;
-}
-/* ===== TOP BAR ===== */
+/* =========================
+   TOP BAR
+========================= */
 .app-topbar {
   position: sticky;
   top: 0;
@@ -131,8 +142,8 @@ body {
   align-items: center;
   gap: 1rem;
   padding: 0 1rem;
-  backdrop-filter: blur(14px);
-  background: rgba(255,255,255,0.12);
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
   z-index: 50;
 }
 
@@ -140,14 +151,12 @@ body {
   font-size: 1.4rem;
   background: none;
   border: none;
-  color: #fff;
+  color: #111827;
 }
 
-.app-title {
-  font-weight: 600;
-}
-
-/* ===== SIDEBAR ===== */
+/* =========================
+   SIDEBAR
+========================= */
 .sidebar {
   position: fixed;
   top: 0;
@@ -155,8 +164,8 @@ body {
   height: 100svh;
   width: 16rem;
   padding: 1.25rem;
-  backdrop-filter: blur(18px);
-  background: rgba(0,0,0,0.55);
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: 100;
@@ -168,6 +177,7 @@ body {
 
 .logo {
   font-size: 1.2rem;
+  font-weight: 600;
   margin-bottom: 1.5rem;
 }
 
@@ -180,13 +190,13 @@ body {
 .nav a {
   padding: 0.6rem 0.75rem;
   border-radius: 0.6rem;
-  color: #fff;
+  color: #111827;
   text-decoration: none;
   font-size: 0.95rem;
 }
 
 .nav a:hover {
-  background: rgba(255,255,255,0.15);
+  background: #f3f4f6;
 }
 
 /* Sidebar Footer */
@@ -207,19 +217,15 @@ body {
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s ease;
 }
 
-.logout-btn:hover {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
-  box-shadow: 0 8px 20px rgba(239,68,68,0.4);
-}
-
-/* ===== BACKDROP ===== */
+/* =========================
+   BACKDROP
+========================= */
 .sidebar-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -231,7 +237,143 @@ body {
   pointer-events: auto;
 }
 
-/* ===== CONTENT ===== */
+/* =========================
+   CONTENT WRAPPER
+========================= */
+.app-container {
+  min-height: 100vh;
+}
+
 .app-content {
   min-height: calc(100svh - 3.5rem);
+}
+
+/* =========================
+   TILE DASHBOARD
+========================= */
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tile {
+  background: #ffffff;
+  border-radius: 14px;
+  min-height: 120px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+
+  text-align: center;
+  cursor: pointer;
+
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  box-shadow:
+    0 0 0 1px rgba(59, 130, 246, 0.12),
+    0 8px 20px rgba(0, 0, 0, 0.05);
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tile:active {
+  transform: scale(0.97);
+}
+
+.tile-icon {
+  font-size: 1.8rem;
+}
+
+.tile-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+/* =========================
+   TICKET CREATE COMPONENT
+========================= */
+.ticket-create-container {
+  padding: 16px;
+}
+
+.appliance-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.appliance-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.appliance-icon {
+  width: 68px;
+  height: 68px;
+}
+
+.appliance-name {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.issue-type-selection, .ticket-form {
+  padding: 16px;
+}
+
+.issue-card {
+  padding: 12px;
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  background-color: #f0f8ff;
+  transition: background-color 0.2s ease;
+}
+
+.issue-card:hover {
+  background-color: #e6f2ff;
+}
+
+.ticket-form textarea,
+.ticket-form input,
+.ticket-form select {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.ticket-form textarea {
+  resize: none;
+  height: 80px;
+}
+
+.create-ticket-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.create-ticket-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

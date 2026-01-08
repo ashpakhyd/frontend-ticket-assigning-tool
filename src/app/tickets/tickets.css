@@ -1,28 +1,43 @@
-  
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* =========================
+   BASE
+========================= */
+html {
+    scroll-behavior: smooth;
   }
   
-  /* ===== Header ===== */
-  .glass-header {
+  .glass-app,
+  .glass-screen,
+  .screen {
+    min-height: 100svh;
+    background: #f9fafb;
+    color: #111827;
+  }
+  
+  /* =========================
+     HEADER
+  ========================= */
+  .glass-header,
+  .header {
     position: sticky;
     top: 0;
     height: 3.5rem;
     display: flex;
     align-items: center;
     padding: 0 1rem;
-    backdrop-filter: blur(14px);
-    background: rgba(255, 255, 255, 0.12);
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
     z-index: 10;
   }
   
-  .glass-header h1 {
+  .glass-header h1,
+  .header h1 {
     font-size: 1.1rem;
+    font-weight: 600;
   }
   
-  /* ===== Grid ===== */
+  /* =========================
+     GRID
+  ========================= */
   .ticket-grid {
     padding: 1rem;
     display: grid;
@@ -30,31 +45,31 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   
-  /* Tablets / foldables */
   @media (min-width: 640px) {
     .ticket-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
   
-  /* Large devices */
   @media (min-width: 1024px) {
     .ticket-grid {
       grid-template-columns: repeat(4, 1fr);
     }
   }
   
-  /* ===== Glass Card ===== */
+  /* =========================
+     CARD (Ticket)
+  ========================= */
   .glass-card {
     position: relative;
     padding: 1rem;
     border-radius: 1rem;
     text-decoration: none;
-    color: #fff;
-    backdrop-filter: blur(18px);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   
   .glass-card:active {
@@ -64,53 +79,65 @@
   .glass-card h3 {
     font-size: 0.95rem;
     margin-bottom: 0.25rem;
+    font-weight: 600;
   }
   
   .sub {
     font-size: 0.75rem;
-    opacity: 0.85;
+    color: #6b7280;
     margin-bottom: 0.6rem;
   }
   
-  /* ===== Price ===== */
+  /* =========================
+     PRICE & STATS
+  ========================= */
   .price {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
+    color: #2563eb;
   }
   
-  /* ===== Stats ===== */
   .stats {
     display: flex;
     justify-content: space-between;
     font-size: 0.7rem;
-    opacity: 0.85;
+    color: #6b7280;
   }
   
-  /* ===== Status Badge ===== */
+  /* =========================
+     STATUS BADGE
+  ========================= */
   .badge {
     position: absolute;
     top: 0.6rem;
     right: 0.6rem;
-    font-size: 0.6rem;
-    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
-    background: rgba(0,0,0,0.4);
+    font-weight: 600;
+    background: #e5e7eb;
+    color: #374151;
   }
   
   .badge.on {
-    background: rgba(34,197,94,0.8);
+    background: #dcfce7;
+    color: #166534;
   }
   
   .badge.closed {
-    background: rgba(100,116,139,0.8);
+    background: #e5e7eb;
+    color: #374151;
   }
   
   .badge.pending {
-    background: rgba(245,158,11,0.85);
+    background: #fef3c7;
+    color: #92400e;
   }
   
-  /* ===== Floating Action Button ===== */
+  /* =========================
+     FLOATING ACTION BUTTON
+  ========================= */
   .fab {
     position: fixed;
     bottom: 1.25rem;
@@ -118,63 +145,29 @@
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 50%;
-    background: linear-gradient(135deg, #6a5cff, #4fc3ff);
-    color: #fff;
+    background: #2563eb;
+    color: #ffffff;
     font-size: 1.8rem;
     display: grid;
     place-items: center;
     text-decoration: none;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.45);
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
   }
   
-  /* ===== Smooth scrolling ===== */
-  html {
-    scroll-behavior: smooth;
-  }
-  /* ===== Screen wrapper ===== */
-.glass-screen {
-    min-height: 100svh;
-  }
-  
-  /* ===== Glass content panel ===== */
+  /* =========================
+     PANELS (DETAIL PAGE)
+  ========================= */
   .glass-panel {
     margin: 1rem;
     padding: 1.25rem;
-    border-radius: 1.25rem;
-    backdrop-filter: blur(18px);
-    background: rgba(255, 255, 255, 0.14);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-radius: 1rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     display: grid;
     gap: 1rem;
   }
   
-  /* Info rows */
-  .row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
-    opacity: 0.95;
-  }
-  
-  /* Glass select */
-  .glass-select {
-    width: 100%;
-    height: 3rem;
-    border-radius: 0.75rem;
-    border: none;
-    padding: 0 0.75rem;
-    font-size: 1rem;
-    background: rgba(255,255,255,0.25);
-    color: #fff;
-    z-index: 2; 
-    flex: 1;
-    position: relative;
-  }
-  
-  /* Fix option color */
-  .glass-select option {
-    color: #000;
-  }
   .ticket-detail {
     padding-bottom: 2rem;
   }
@@ -183,6 +176,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.9rem;
+    color: #374151;
   }
   
   .assign-row {
@@ -190,20 +184,42 @@
     gap: 0.5rem;
   }
   
-  
-  /* Section */
-  .section h3 {
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
+  /* =========================
+     FORM ELEMENTS
+  ========================= */
+  .glass-select {
+    flex: 1;
+    height: 3rem;
+    border-radius: 0.75rem;
+    border: 1px solid #d1d5db;
+    padding: 0 0.75rem;
+    font-size: 0.9rem;
+    background: #ffffff;
+    color: #111827;
   }
   
-  /* Attachment */
-  .attach-row {
-    display: flex;
-    gap: 0.5rem;
+  .glass-select option {
+    color: #111827;
   }
   
-  /* Comments */
+  input,
+  textarea {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid #d1d5db;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    background: #ffffff;
+    color: #111827;
+  }
+  
+  textarea {
+    min-height: 4rem;
+  }
+  
+  /* =========================
+     COMMENTS
+  ========================= */
   .comment-list {
     display: grid;
     gap: 0.5rem;
@@ -214,29 +230,26 @@
   .comment {
     padding: 0.6rem;
     border-radius: 0.6rem;
-    background: rgba(0,0,0,0.25);
+    background: #f3f4f6;
   }
   
   .comment-head {
     display: flex;
     gap: 0.5rem;
     font-size: 0.75rem;
-    opacity: 0.85;
+    color: #6b7280;
   }
   
-  .glass-textarea {
-    width: 100%;
-    min-height: 4rem;
-    margin-top: 0.5rem;
-    border-radius: 0.75rem;
-    border: none;
-    padding: 0.75rem;
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-  }
-  
+  /* =========================
+     MISC
+  ========================= */
   .checkbox {
     font-size: 0.75rem;
     margin: 0.5rem 0;
+  }
+  
+  .loading {
+    font-size: 0.9rem;
+    color: #6b7280;
   }
   

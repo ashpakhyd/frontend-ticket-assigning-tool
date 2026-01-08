@@ -20,7 +20,7 @@ export default function TicketDetail() {
   const { data: technicians } = useGetTechniciansQuery();
   const [assign, { isLoading }] = useAssignTechnicianMutation();
   const [techId, setTechId] = useState("");
-
+console.log("technicians", technicians)
   if (!ticket) return null;
 
   const assignTech = async () => {
