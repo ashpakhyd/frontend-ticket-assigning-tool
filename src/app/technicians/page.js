@@ -1,0 +1,95 @@
+"use client";
+
+import ProtectedRoute from "@/components/ProtectedRoute";
+import { useGetTechniciansQuery } from "@/store/api/ticketApi";
+import { useState, useMemo } from "react";
+import Link from "next/link";
+import "./technicians.css";
+
+export default function TechniciansPage() {
+  const { data: technicians, isLoading } = useGetTechniciansQuery();
+  const [search, setSearch] = useState("");
+  const [specialtyFilter, setSpecialtyFilter] = useState("");
+
+  const filteredTechnicians = useMemo(() => {
+    if (!technicians) return [];
+    return technicians.filter(tech => {
+      const matchesSearch = (tech.name || '').toLowerCase().includes(search.toLowerCase()) ||
+                           (tech.phone || '').includes(search) ||
+                           (tech.email || '').toLowerCase().includes(search.toLowerCase());
+      const matchesSpecialty = !specialtyFilter || tech.specialty === specialtyFilter;
+      return matchesSearch && matchesSpecialty;
+    });
+  }, [technicians, search, specialtyFilter]);
+
+  const specialties = useMemo(() => {
+    if (!technicians) return [];
+    return [...new Set(technicians.map(t => t.specialty).filter(Boolean))];
+  }, [technicians]);
+
+  return (
+    <ProtectedRoute>
+      <main className="glass-app">
+        <header className="glass-header">
+          <h1>Technicians</h1>
+        </header>
+
+        <section className="filters-section">
+          <input
+            type="text"
+            placeholder="Search by name, phone, or email..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="search-input"
+          />
+          <select
+            value={specialtyFilter}
+            onChange={(e) => setSpecialtyFilter(e.target.value)}
+            className="specialty-filter"
+          >
+            <option value="">All Specialties</option>
+            {specialties.map(specialty => (
+              <option key={specialty} value={specialty}>{specialty}</option>
+            ))}
+          </select>
+        </section>
+
+        <section className="technicians-grid">
+          {isLoading && <p className="loading">Loading technicians...</p>}
+
+          {filteredTechnicians.map((tech) => (
+            <Link key={tech._id} href={`/technicians/${tech._id}`} className="technician-card">
+              <div className="tech-avatar">👨🔧</div>
+              
+              <div className="tech-info">
+                <h3>{tech.name}</h3>
+                <p className="tech-phone">{tech.phone}</p>
+                <p className="tech-email">{tech.email}</p>
+                {tech.specialty && <p className="tech-specialty">{tech.specialty}</p>}
+              </div>
+
+              <div className="tech-stats">
+                <div className="stat">
+                  <span className="stat-value">{tech.totalJobs || 0}</span>
+                  <span className="stat-label">Total Jobs</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-value">{tech.completedJobs || 0}</span>
+                  <span className="stat-label">Completed</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-value">⭐ {tech.avgRating || "N/A"}</span>
+                  <span className="stat-label">Rating</span>
+                </div>
+              </div>
+
+              <div className={`tech-status ${tech.isActive ? 'active' : 'inactive'}`}>
+                {tech.isActive ? 'Active' : 'Inactive'}
+              </div>
+            </Link>
+          ))}
+        </section>
+      </main>
+    </ProtectedRoute>
+  );
+}

@@ -29,6 +29,7 @@ export default function Sidebar({ open, onClose }) {
           <Link href="/dashboard" onClick={onClose}>Dashboard</Link>
           <Link href="/tickets" onClick={onClose}>Tickets</Link>
           <Link href="/tickets/create" onClick={onClose}>Create Ticket</Link>
+          <Link href="/technicians" onClick={onClose}>Technicians</Link>
         </nav>
 
         <div className="sidebar-footer">
