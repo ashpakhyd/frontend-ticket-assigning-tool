@@ -14,6 +14,9 @@ export const dashboardApi = apiSlice.injectEndpoints({
     getTechnicianRatings: builder.query({
       query: () => "/admin/dashboard/technician-ratings",
     }),
+    getCustomerRatings: builder.query({
+      query: () => "/admin/ratings",
+    }),
   }),
 });
 
@@ -22,4 +25,5 @@ export const {
   useGetTicketStatusChartQuery,
   useGetTechnicianPerformanceQuery,
   useGetTechnicianRatingsQuery,
+  useGetCustomerRatingsQuery,
 } = dashboardApi;

@@ -3,6 +3,7 @@
 import TicketStatusChart from "@/components/TicketStatusChart";
 import TechnicianPerformance from "@/components/TechnicianPerformance";
 import TechnicianRatings from "@/components/TechnicianRatings";
+import CustomerRatings from "@/components/CustomerRatings";
 
 export default function DashboardFilteredView({ filter }) {
   switch (filter) {
@@ -14,7 +15,7 @@ export default function DashboardFilteredView({ filter }) {
       return <TechnicianPerformance />;
 
     case "CUSTOMER":
-      return <TechnicianRatings />;
+      return <CustomerRatings />;
 
     case "ALL":
     default:
@@ -23,6 +24,7 @@ export default function DashboardFilteredView({ filter }) {
           <TicketStatusChart />
           <TechnicianPerformance />
           <TechnicianRatings />
+          <CustomerRatings />
         </>
       );
   }
