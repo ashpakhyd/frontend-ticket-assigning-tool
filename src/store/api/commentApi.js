@@ -16,6 +16,14 @@ export const commentApi = apiSlice.injectEndpoints({
       invalidatesTags: (r, e, a) => [{ type: "Comments", id: a.ticketId }],
     }),
 
+    deleteComment: builder.mutation({
+      query: ({ ticketId, commentId }) => ({
+        url: `/tickets/${ticketId}/comments/${commentId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (r, e, a) => [{ type: "Comments", id: a.ticketId }],
+    }),
+
     uploadAttachment: builder.mutation({
       query: ({ ticketId, file }) => {
         const formData = new FormData();
@@ -34,5 +42,6 @@ export const commentApi = apiSlice.injectEndpoints({
 export const {
   useGetCommentsQuery,
   useAddCommentMutation,
+  useDeleteCommentMutation,
   useUploadAttachmentMutation,
 } = commentApi;

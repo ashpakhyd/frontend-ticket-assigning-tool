@@ -2,12 +2,14 @@
 import {
   useGetCommentsQuery,
   useAddCommentMutation,
+  useDeleteCommentMutation,
 } from "@/store/api/commentApi";
 import { useForm } from "react-hook-form";
 
 export default function TicketComments({ ticketId }) {
   const { data: comments, isLoading } = useGetCommentsQuery(ticketId);
   const [addComment, { isLoading: sending }] = useAddCommentMutation();
+  const [deleteComment] = useDeleteCommentMutation();
   const { register, handleSubmit, reset, watch, setValue } = useForm({
     defaultValues: {
       message: "",
@@ -23,6 +25,12 @@ export default function TicketComments({ ticketId }) {
     reset();
   };
 
+  const handleDeleteComment = async (commentId) => {
+    if (confirm('Are you sure you want to delete this comment?')) {
+      await deleteComment({ ticketId, commentId }).unwrap();
+    }
+  };
+
   if (isLoading) return <p>Loading comments…</p>;
 
   return (
@@ -36,6 +44,13 @@ export default function TicketComments({ ticketId }) {
               <b>{c.user?.name}</b>
               <span>{c.role}</span>
               {c.isInternal && <span className="lock">🔒</span>}
+              <button
+                onClick={() => handleDeleteComment(c._id)}
+                className="delete-comment-btn"
+                title="Delete comment"
+              >
+                🗑️
+              </button>
             </div>
             <p>{c.message}</p>
           </div>

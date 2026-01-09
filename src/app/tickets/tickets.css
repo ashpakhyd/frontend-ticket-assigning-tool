@@ -36,6 +36,36 @@ html {
   }
   
   /* =========================
+     FILTERS
+  ========================= */
+  .filters-section {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .search-input {
+    flex: 1;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .status-filter {
+    min-width: 150px;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    background: #ffffff;
+  }
+  
+  /* =========================
      GRID
   ========================= */
   .ticket-grid {
@@ -454,6 +484,21 @@ html {
   .comment-head .lock {
     background: #fef3c7;
     color: #92400e;
+  }
+  
+  .delete-comment-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.15s ease;
+  }
+  
+  .delete-comment-btn:hover {
+    background: #fee2e2;
   }
   
   .comment p {
