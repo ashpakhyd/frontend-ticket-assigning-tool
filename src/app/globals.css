@@ -212,12 +212,12 @@ body.animated-bg {
   height: 100svh;
   width: 16rem;
   padding: 0;
-  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-  border-right: none;
+  background: #ffffff;
+  border-right: 1px solid #cbd5e1;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: 100;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar.open {
@@ -226,15 +226,17 @@ body.animated-bg {
 
 .sidebar-header {
   padding: 1.5rem 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid #cbd5e1;
 }
 
 .logo {
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 600;
   margin-bottom: 0;
-  color: #ffffff;
+  color: #1e293b;
   text-align: center;
+  text-decoration: none;
+  display: block;
 }
 
 /* Navigation */
@@ -249,18 +251,18 @@ body.animated-bg {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  color: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  color: #475569;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .nav-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  transform: translateX(4px);
+  background: #e2e8f0;
+  color: #1e293b;
+  transform: none;
 }
 
 .nav-icon {
@@ -280,20 +282,19 @@ body.animated-bg {
 .logout-btn {
   width: 100%;
   padding: 0.75rem;
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 0.95rem;
-  font-weight: 600;
+  border-radius: 6px;
+  background: #e2e8f0;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.15s ease;
 }
 
 .logout-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
+  background: #cbd5e1;
+  transform: none;
 }
 
 /* =========================

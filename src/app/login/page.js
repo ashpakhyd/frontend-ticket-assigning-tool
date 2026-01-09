@@ -27,8 +27,9 @@ export default function Login() {
       localStorage.setItem("token", res.token);
       dispatch(setCredentials({ token: res.token }));
       router.push("/");
-    } catch {
-      alert("Invalid login");
+    } catch (error) {
+      const errorMessage = error?.data?.message || error?.message || "Login failed. Please try again.";
+      alert(errorMessage);
     }
   };
 
@@ -115,7 +116,7 @@ export default function Login() {
           <div className="login-form">
             <input
               type="text"
-              placeholder="🔢 Enter 6-digit OTP"
+              placeholder="Enter 6-digit OTP"
               value={otp}
               onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
               maxLength="6"
@@ -123,7 +124,7 @@ export default function Login() {
 
             <input
               type="password"
-              placeholder="🔒 New Password (min 6 chars)"
+              placeholder="New Password (min 6 chars)"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
@@ -133,7 +134,7 @@ export default function Login() {
               onClick={handleResetPassword}
               disabled={isResetting}
             >
-              {isResetting ? "⏳ Resetting..." : "✅ Reset Password"}
+              {isResetting ? "Resetting..." : "Reset Password"}
             </button>
 
             <button
@@ -162,7 +163,7 @@ export default function Login() {
           <div className="login-form">
             <input
               type="tel"
-              placeholder="📱 Enter your phone number"
+              placeholder="Enter your phone number"
               value={resetPhone}
               onChange={(e) => setResetPhone(e.target.value.replace(/\D/g, ''))}
             />
@@ -172,7 +173,7 @@ export default function Login() {
               onClick={handleSendOtp}
               disabled={isResetting}
             >
-              {isResetting ? "⏳ Sending..." : "📧 Send OTP"}
+              {isResetting ? "Sending..." : "Send OTP"}
             </button>
 
             <button
@@ -201,7 +202,7 @@ export default function Login() {
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="tel"
-              placeholder="📱 Mobile number"
+              placeholder="Mobile number"
               {...register("phone", { required: "Phone is required" })}
             />
             {errors.phone && <span className="error">{errors.phone.message}</span>}
@@ -209,7 +210,7 @@ export default function Login() {
             <div className="password-field">
               <input
                 type={showPassword ? "text" : "password"}
-                placeholder="🔒 Password"
+                placeholder="Password"
                 {...register("password", { required: "Password is required" })}
               />
               <button
@@ -217,7 +218,7 @@ export default function Login() {
                 className="password-toggle"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? "👁️" : "🙈"}
+                {showPassword ? "👁" : "👁"}
               </button>
             </div>
             {errors.password && <span className="error">{errors.password.message}</span>}
@@ -241,7 +242,7 @@ export default function Login() {
               className="primary-btn"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "⏳ Signing in..." : "🚀 Sign In"}
+              {isSubmitting ? "Signing in..." : "Sign In"}
             </button>
           </form>
         </div>

@@ -24,7 +24,7 @@ export default function Sidebar({ open, onClose }) {
 
       <aside className={`sidebar ${open ? "open" : ""}`}>
         <div className="sidebar-header">
-          <h2 className="logo">🏢 Admin Panel</h2>
+          <Link href="/" onClick={onClose} className="logo">🏢 Admin Panel</Link>
         </div>
 
         <nav className="nav">

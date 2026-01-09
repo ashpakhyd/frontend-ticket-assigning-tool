@@ -1,24 +1,22 @@
-/* Entire app screen */
+/* Professional Login Screen */
 .app-screen {
-  min-height: 100svh;
-  background: linear-gradient(160deg, #667eea, #764ba2);
+  min-height: 100vh;
+  background: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
 }
 
-/* Glass card */
+/* Clean Login Card */
 .login-card {
   width: 100%;
-  max-width: 26rem;
-  padding: 2.5rem 2rem;
-  border-radius: 1.5rem;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
 }
 
 /* Store Branding */
@@ -28,32 +26,28 @@
 }
 
 .store-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  background: rgba(255, 255, 255, 0.2);
-  width: 4rem;
-  height: 4rem;
-  border-radius: 1rem;
+  width: 60px;
+  height: 60px;
+  background: #3b82f6;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1rem;
+  color: white;
+  font-size: 1.5rem;
 }
 
 .store-branding h1 {
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
   margin-bottom: 0.5rem;
-  background: linear-gradient(45deg, #fff, #e0e7ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .subtitle {
-  font-size: 0.9rem;
-  opacity: 0.85;
-  margin-bottom: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
 }
 
 /* Form Section */
@@ -61,18 +55,18 @@
   margin-bottom: 1.5rem;
 }
 
-/* Inputs */
+/* Form Inputs */
 input {
   width: 100%;
-  height: 3.5rem;
+  height: 44px;
   margin-bottom: 1rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0 1.25rem;
-  font-size: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  transition: all 0.3s ease;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 0 12px;
+  font-size: 0.875rem;
+  background: #ffffff;
+  color: #111827;
+  transition: border-color 0.15s ease;
 }
 
 .password-field {
@@ -92,14 +86,14 @@ input {
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.7);
+  color: #6b7280;
   cursor: pointer;
   font-size: 1.2rem;
   transition: color 0.2s ease;
 }
 
 .password-toggle:hover {
-  color: #fff;
+  color: #374151;
 }
 
 .back-btn {
@@ -107,24 +101,27 @@ input {
   text-align: center;
   margin-top: 1rem;
   padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
+  background: #f3f4f6;
+  border-radius: 6px;
+  color: #374151;
+  border: none;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .back-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #e5e7eb;
+  color: #111827;
 }
 
 input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: #9ca3af;
 }
 
 input:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 /* Actions */
@@ -141,41 +138,45 @@ input:focus {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  color: #374151;
+}
+
+.actions input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #3b82f6;
 }
 
 .text-btn {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.8);
+  color: #3b82f6;
   cursor: pointer;
   text-decoration: underline;
   transition: color 0.2s ease;
 }
 
 .text-btn:hover {
-  color: #fff;
+  color: #2563eb;
 }
 
 /* Primary Button */
 .primary-btn {
   width: 100%;
-  height: 3.5rem;
-  border-radius: 1rem;
+  height: 44px;
+  border-radius: 6px;
   border: none;
-  font-size: 1.05rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-  backdrop-filter: blur(10px);
-  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: #3b82f6;
+  color: #ffffff;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: background-color 0.15s ease;
 }
 
 .primary-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  background: #2563eb;
 }
 
 .primary-btn:active {
@@ -183,21 +184,20 @@ input:focus {
 }
 
 .primary-btn:disabled {
-  opacity: 0.7;
+  background: #9ca3af;
   cursor: not-allowed;
-  transform: none;
 }
 
 /* Footer */
 .login-footer {
   text-align: center;
   padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid #e5e7eb;
 }
 
 .login-footer p {
-  font-size: 0.8rem;
-  opacity: 0.7;
+  font-size: 0.75rem;
+  color: #6b7280;
   margin: 0;
 }
 
