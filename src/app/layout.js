@@ -3,7 +3,10 @@ import { Inter } from "next/font/google";
 import Providers from "./providers";
 
 export const metadata = {
-  manifest: "/manifest.json",
+  manifest: "/manifest.json"
+};
+
+export const viewport = {
   themeColor: "#0f172a"
 };
 

@@ -12,7 +12,7 @@ export const apiSlice = createApi({
   }),
 
   // ✅ YAHI ADD KARNA THA
-  tagTypes: ["Tickets"],
+  tagTypes: ["Tickets", "Comments"],
 
   endpoints: () => ({}),
 });

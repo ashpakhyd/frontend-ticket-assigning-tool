@@ -3,24 +3,29 @@ import {
   useGetCommentsQuery,
   useAddCommentMutation,
 } from "@/store/api/commentApi";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function TicketComments({ ticketId }) {
   const { data: comments, isLoading } = useGetCommentsQuery(ticketId);
   const [addComment, { isLoading: sending }] = useAddCommentMutation();
-  const [message, setMessage] = useState("");
-  const [isInternal, setIsInternal] = useState(false);
+  const { register, handleSubmit, reset, watch, setValue } = useForm({
+    defaultValues: {
+      message: "",
+      isInternal: false
+    }
+  });
 
-  const submit = async () => {
-    if (!message) return;
-    await addComment({ ticketId, message, isInternal }).unwrap();
-    setMessage("");
+  const isInternal = watch("isInternal");
+
+  const onSubmit = async (data) => {
+    if (!data.message) return;
+    await addComment({ ticketId, ...data }).unwrap();
+    reset();
   };
 
   if (isLoading) return <p>Loading comments…</p>;
 
   return (
-    <>
     <div className="section comments">
       <h3>Comments</h3>
 
@@ -37,32 +42,31 @@ export default function TicketComments({ ticketId }) {
         ))}
       </div>
 
-      <textarea
-        className="glass-textarea"
-        placeholder="Write a comment…"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-
-      <label className="checkbox">
-        <input
-          type="checkbox"
-          checked={isInternal}
-          onChange={(e) => setIsInternal(e.target.checked)}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <textarea
+          className="glass-textarea"
+          placeholder="Write a comment…"
+          {...register("message", { required: true })}
         />
-        Internal note (Admin ↔ Technician)
-      </label>
 
-     
+        <div className="comment-form-actions">
+          <label className="checkbox">
+            <input
+              type="checkbox"
+              {...register("isInternal")}
+            />
+            Internal note (Admin ↔ Technician)
+          </label>
+
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={sending}
+          >
+            {sending ? "Sending…" : "Add Comment"}
+          </button>
+        </div>
+      </form>
     </div>
-     <div>
-     <button
-       className="btn btn-primary"
-       onClick={submit}
-       disabled={sending}
-     >
-       {sending ? "Sending…" : "Add Comment"}
-     </button>
-     </div></>
   );
 }

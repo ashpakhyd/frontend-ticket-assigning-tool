@@ -1,3 +1,17 @@
+/* Error Messages */
+.error {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+  border-color: #dc2626;
+}
+
 /* =========================
    RESET & BASE
 ========================= */

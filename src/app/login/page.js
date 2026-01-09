@@ -5,11 +5,11 @@ import { useLoginMutation } from "@/store/api/authApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "@/store/slices/authSlice";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 export default function Login() {
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showOtpScreen, setShowOtpScreen] = useState(false);
@@ -17,13 +17,13 @@ export default function Login() {
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [isResetting, setIsResetting] = useState(false);
-  const [login, { isLoading }] = useLoginMutation();
+  const [login] = useLoginMutation();
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleLogin = async () => {
+  const onSubmit = async (data) => {
     try {
-      const res = await login({ phone, password }).unwrap();
+      const res = await login(data).unwrap();
       localStorage.setItem("token", res.token);
       dispatch(setCredentials({ token: res.token }));
       router.push("/");
@@ -198,49 +198,52 @@ export default function Login() {
         </div>
 
         <div className="login-form">
-          <input
-            type="tel"
-            placeholder="📱 Mobile number"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-
-          <div className="password-field">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <input
-              type={showPassword ? "text" : "password"}
-              placeholder="🔒 Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type="tel"
+              placeholder="📱 Mobile number"
+              {...register("phone", { required: "Phone is required" })}
             />
+            {errors.phone && <span className="error">{errors.phone.message}</span>}
+
+            <div className="password-field">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="🔒 Password"
+                {...register("password", { required: "Password is required" })}
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "👁️" : "🙈"}
+              </button>
+            </div>
+            {errors.password && <span className="error">{errors.password.message}</span>}
+
+            <div className="actions">
+              <label>
+                <input type="checkbox" />
+                Remember me
+              </label>
+              <button 
+                type="button"
+                className="text-btn"
+                onClick={() => setShowForgotPassword(true)}
+              >
+                Forgot Password?
+              </button>
+            </div>
+
             <button
-              type="button"
-              className="password-toggle"
-              onClick={() => setShowPassword(!showPassword)}
+              type="submit"
+              className="primary-btn"
+              disabled={isSubmitting}
             >
-              {showPassword ? "👁️" : "🙈"}
+              {isSubmitting ? "⏳ Signing in..." : "🚀 Sign In"}
             </button>
-          </div>
-
-          <div className="actions">
-            <label>
-              <input type="checkbox" />
-              Remember me
-            </label>
-            <button 
-              className="text-btn"
-              onClick={() => setShowForgotPassword(true)}
-            >
-              Forgot Password?
-            </button>
-          </div>
-
-          <button
-            className="primary-btn"
-            onClick={handleLogin}
-            disabled={isLoading}
-          >
-            {isLoading ? "⏳ Signing in..." : "🚀 Sign In"}
-          </button>
+          </form>
         </div>
 
         <div className="login-footer">

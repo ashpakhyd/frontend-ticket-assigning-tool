@@ -1,34 +1,102 @@
 "use client";
-import { useUploadAttachmentMutation } from "@/store/api/commentApi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function TicketAttachment({ ticketId }) {
-  const [file, setFile] = useState(null);
-  const [upload, { isLoading }] = useUploadAttachmentMutation();
+  const [attachments, setAttachments] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
 
-  const submit = async () => {
+  useEffect(() => {
+    const stored = localStorage.getItem(`attachments_${ticketId}`);
+    if (stored) {
+      setAttachments(JSON.parse(stored));
+    }
+  }, [ticketId]);
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
     if (!file) return;
-    await upload({ ticketId, file }).unwrap();
-    setFile(null);
+
+    setIsUploading(true);
+    const reader = new FileReader();
+    
+    reader.onload = () => {
+      const attachment = {
+        id: Date.now().toString(),
+        name: file.name,
+        type: file.type,
+        size: file.size,
+        data: reader.result,
+        uploadedAt: new Date().toISOString()
+      };
+
+      const newAttachments = [...attachments, attachment];
+      setAttachments(newAttachments);
+      localStorage.setItem(`attachments_${ticketId}`, JSON.stringify(newAttachments));
+      
+      // Send only ID to backend
+      console.log('Sending attachment ID to backend:', attachment.id);
+      
+      setIsUploading(false);
+      e.target.value = '';
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const removeAttachment = (id) => {
+    const newAttachments = attachments.filter(att => att.id !== id);
+    setAttachments(newAttachments);
+    localStorage.setItem(`attachments_${ticketId}`, JSON.stringify(newAttachments));
+  };
+
+  const formatFileSize = (bytes) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
   return (
-    <div className="section">
-      <h3>Attachments</h3>
+    <div className="attachments-section">
+      <h3>Attachments ({attachments.length})</h3>
 
-      <div className="attach-row">
+      <div className="upload-area">
         <input
           type="file"
-          onChange={(e) => setFile(e.target.files[0])}
+          id="file-upload"
+          accept="image/*,.pdf,.doc,.docx"
+          onChange={handleFileUpload}
+          className="file-input"
         />
-        <button
-          className="btn btn-secondary"
-          onClick={submit}
-          disabled={isLoading}
-        >
-          {isLoading ? "Uploading…" : "Upload"}
-        </button>
+        <label htmlFor="file-upload" className="upload-btn">
+          {isUploading ? '📤 Uploading...' : '📎 Add Attachment'}
+        </label>
       </div>
+
+      {attachments.length > 0 && (
+        <div className="attachments-grid">
+          {attachments.map((att) => (
+            <div key={att.id} className="attachment-card">
+              {att.type.startsWith('image/') ? (
+                <img src={att.data} alt={att.name} className="attachment-preview" />
+              ) : (
+                <div className="file-icon">📄</div>
+              )}
+              <div className="attachment-info">
+                <p className="attachment-name">{att.name}</p>
+                <p className="attachment-size">{formatFileSize(att.size)}</p>
+              </div>
+              <button
+                onClick={() => removeAttachment(att.id)}
+                className="remove-btn"
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

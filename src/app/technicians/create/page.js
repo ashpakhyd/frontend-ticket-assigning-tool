@@ -2,21 +2,23 @@
 
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Button from "@/components/Button";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import "../technicians.css";
 
 export default function CreateTechnician() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    specialty: "",
-    experience: "",
-    address: ""
+  const { register, handleSubmit, formState: { errors, isSubmitting, isValid } } = useForm({
+    defaultValues: {
+      name: "",
+      phone: "",
+      email: "",
+      specialty: [],
+      experience: "",
+      address: ""
+    },
+    mode: "onChange"
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   const specialties = [
     "AC Repair",
@@ -32,30 +34,15 @@ export default function CreateTechnician() {
     "General Appliance Repair"
   ];
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
+  const onSubmit = async (data) => {
     try {
-      // API call would go here
-      console.log("Creating technician:", formData);
+      console.log("Creating technician:", data);
       alert("Technician created successfully!");
       router.push("/technicians");
     } catch (error) {
       alert("Failed to create technician");
-    } finally {
-      setIsLoading(false);
     }
   };
-
-  const isFormValid = formData.name && formData.phone && formData.email && formData.specialty;
 
   return (
     <ProtectedRoute>
@@ -68,66 +55,56 @@ export default function CreateTechnician() {
           </div>
         </header>
 
-        <form onSubmit={handleSubmit} className="tech-form">
+        <form onSubmit={handleSubmit(onSubmit)} className="tech-form">
           <div className="form-grid">
             <div className="form-group">
               <label>Full Name *</label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
+                {...register("name", { required: "Name is required" })}
                 placeholder="Enter full name"
-                required
               />
+              {errors.name && <span className="error">{errors.name.message}</span>}
             </div>
 
             <div className="form-group">
               <label>Phone Number *</label>
               <input
                 type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
+                {...register("phone", { required: "Phone is required" })}
                 placeholder="Enter phone number"
-                required
               />
+              {errors.phone && <span className="error">{errors.phone.message}</span>}
             </div>
 
             <div className="form-group">
               <label>Email Address *</label>
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
+                {...register("email", { required: "Email is required" })}
                 placeholder="Enter email address"
-                required
               />
+              {errors.email && <span className="error">{errors.email.message}</span>}
             </div>
 
             <div className="form-group">
               <label>Specialty *</label>
               <select
-                name="specialty"
-                value={formData.specialty}
-                onChange={handleChange}
-                required
+                {...register("specialty", { required: "At least one specialty is required" })}
+                multiple
               >
-                <option value="">Select specialty</option>
                 {specialties.map(specialty => (
                   <option key={specialty} value={specialty}>{specialty}</option>
                 ))}
               </select>
+              {errors.specialty && <span className="error">{errors.specialty.message}</span>}
             </div>
 
             <div className="form-group">
               <label>Experience (Years)</label>
               <input
                 type="number"
-                name="experience"
-                value={formData.experience}
-                onChange={handleChange}
+                {...register("experience", { min: 0, max: 50 })}
                 placeholder="Years of experience"
                 min="0"
                 max="50"
@@ -137,9 +114,7 @@ export default function CreateTechnician() {
             <div className="form-group full-width">
               <label>Address</label>
               <textarea
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
+                {...register("address")}
                 placeholder="Enter address"
                 rows="3"
               />
@@ -157,8 +132,8 @@ export default function CreateTechnician() {
             <Button
               type="submit"
               variant="primary"
-              disabled={!isFormValid}
-              loading={isLoading}
+              disabled={!isValid}
+              loading={isSubmitting}
             >
               Create Technician
             </Button>

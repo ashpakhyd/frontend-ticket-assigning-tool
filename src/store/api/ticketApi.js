@@ -33,6 +33,18 @@ export const ticketApi = apiSlice.injectEndpoints({
       ],
     }),
 
+    updateTicketStatus: builder.mutation({
+      query: ({ ticketId, status }) => ({
+        url: `/tickets/${ticketId}/status`,
+        method: "PATCH",
+        body: { status },
+      }),
+      invalidatesTags: (result, error, { ticketId }) => [
+        { type: "Tickets", id: ticketId },
+        "Tickets",
+      ],
+    }),
+
     getTechnicians: builder.query({
       query: () => "/admin/technicians",
     }),
@@ -44,5 +56,6 @@ export const {
   useGetTicketByIdQuery,
   useCreateTicketMutation,
   useAssignTechnicianMutation,
+  useUpdateTicketStatusMutation,
   useGetTechniciansQuery,
 } = ticketApi;
