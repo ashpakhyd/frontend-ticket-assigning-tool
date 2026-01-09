@@ -11,6 +11,7 @@ const MinimalTicketForm = ({ appliance, issue, onBack, onSubmit }) => {
   const handleSubmit = () => {
     if (isFormValid) {
       onSubmit({
+        title: `${appliance.name} - ${issue}`,
         appliance: appliance.name,
         issue,
         description,

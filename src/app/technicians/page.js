@@ -52,6 +52,9 @@ export default function TechniciansPage() {
               <option key={specialty} value={specialty}>{specialty}</option>
             ))}
           </select>
+          <Link href="/technicians/map" className="map-btn">
+            🗺️ Live Map
+          </Link>
         </section>
 
         <section className="technicians-grid">
@@ -89,6 +92,8 @@ export default function TechniciansPage() {
             </Link>
           ))}
         </section>
+
+        <Link href="/technicians/create" className="fab">＋</Link>
       </main>
     </ProtectedRoute>
   );

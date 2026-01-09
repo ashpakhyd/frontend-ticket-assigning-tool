@@ -23,13 +23,31 @@ export default function Sidebar({ open, onClose }) {
       />
 
       <aside className={`sidebar ${open ? "open" : ""}`}>
-        <h2 className="logo">Admin</h2>
+        <div className="sidebar-header">
+          <h2 className="logo">🏢 Admin Panel</h2>
+        </div>
 
         <nav className="nav">
-          <Link href="/dashboard" onClick={onClose}>Dashboard</Link>
-          <Link href="/tickets" onClick={onClose}>Tickets</Link>
-          <Link href="/tickets/create" onClick={onClose}>Create Ticket</Link>
-          <Link href="/technicians" onClick={onClose}>Technicians</Link>
+          <Link href="/" onClick={onClose} className="nav-item">
+            <span className="nav-icon">🏠</span>
+            <span>Home</span>
+          </Link>
+          <Link href="/dashboard" onClick={onClose} className="nav-item">
+            <span className="nav-icon">📊</span>
+            <span>Dashboard</span>
+          </Link>
+          <Link href="/tickets" onClick={onClose} className="nav-item">
+            <span className="nav-icon">🎫</span>
+            <span>Tickets</span>
+          </Link>
+          <Link href="/tickets/create" onClick={onClose} className="nav-item">
+            <span className="nav-icon">➕</span>
+            <span>Create Ticket</span>
+          </Link>
+          <Link href="/technicians" onClick={onClose} className="nav-item">
+            <span className="nav-icon">👨‍🔧</span>
+            <span>Technicians</span>
+          </Link>
         </nav>
 
         <div className="sidebar-footer">

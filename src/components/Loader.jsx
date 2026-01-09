@@ -5,7 +5,11 @@ import "./loader.css";
 export default function Loader() {
   return (
     <div className="loader-wrapper">
-      <div className="loader"></div>
+      <div className="loader">
+        <div className="loader-circle"></div>
+        <div className="loader-circle"></div>
+        <div className="loader-circle"></div>
+      </div>
     </div>
   );
 }

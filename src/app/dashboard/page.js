@@ -11,19 +11,20 @@ export default function Dashboard() {
 
   return (
     <ProtectedRoute>
-      <main className="glass-screen">
-        <header className="glass-header">
-          <h1>Dashboard</h1>
+      <main className="dashboard-container">
+        <header className="dashboard-header">
+          <h1>Dashboard Overview</h1>
+          <p>Monitor your service operations</p>
         </header>
 
-        <section className="dash-section">
+        <section className="stats-section">
           <DashboardFilterCards
             active={activeFilter}
             onChange={setActiveFilter}
           />
         </section>
 
-        <section className="dash-section">
+        <section className="charts-section">
           <DashboardFilteredView filter={activeFilter} />
         </section>
       </main>
