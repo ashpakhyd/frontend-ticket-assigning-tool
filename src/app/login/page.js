@@ -106,14 +106,21 @@ export default function Login() {
   if (showForgotPassword && showOtpScreen) {
     return (
       <main className="app-screen">
-        <section className="login-card">
-          <div className="store-branding">
-            <div className="store-icon">🔐</div>
+        <div className="welcome-panel">
+          <div className="welcome-logo">🔐</div>
+          <div className="welcome-content">
             <h1>Enter OTP</h1>
-            <p className="subtitle">Enter the 6-digit code sent to {resetPhone}</p>
+            <p>Enter the 6-digit code sent to {resetPhone}</p>
           </div>
+        </div>
+        
+        <div className="login-panel">
+          <div className="login-card">
+            <div className="login-header">
+              <h2>Verify OTP</h2>
+              <p>Enter verification code</p>
+            </div>
 
-          <div className="login-form">
             <input
               type="text"
               placeholder="Enter 6-digit OTP"
@@ -144,7 +151,7 @@ export default function Login() {
               ← Back to Phone
             </button>
           </div>
-        </section>
+        </div>
       </main>
     );
   }
@@ -153,14 +160,21 @@ export default function Login() {
   if (showForgotPassword) {
     return (
       <main className="app-screen">
-        <section className="login-card">
-          <div className="store-branding">
-            <div className="store-icon">🔒</div>
+        <div className="welcome-panel">
+          <div className="welcome-logo">🔒</div>
+          <div className="welcome-content">
             <h1>Reset Password</h1>
-            <p className="subtitle">Enter your phone number to receive OTP</p>
+            <p>Enter your phone number to receive OTP</p>
           </div>
+        </div>
+        
+        <div className="login-panel">
+          <div className="login-card">
+            <div className="login-header">
+              <h2>Forgot Password?</h2>
+              <p>Enter your phone number</p>
+            </div>
 
-          <div className="login-form">
             <input
               type="tel"
               placeholder="Enter your phone number"
@@ -183,7 +197,7 @@ export default function Login() {
               ← Back to Login
             </button>
           </div>
-        </section>
+        </div>
       </main>
     );
   }
@@ -191,14 +205,21 @@ export default function Login() {
   // Main Login Screen
   return (
     <main className="app-screen">
-      <section className="login-card">
-        <div className="store-branding">
-          <div className="store-icon">🏢</div>
-          <h1>Store Management</h1>
-          <p className="subtitle">Admin Portal - Login to continue</p>
+      <div className="welcome-panel">
+        <div className="welcome-logo">🏢</div>
+        <div className="welcome-content">
+          <h1>Welcome Back!</h1>
+          <p>To stay connected with us please login with your personal info</p>
         </div>
+      </div>
+      
+      <div className="login-panel">
+        <div className="login-card">
+          <div className="login-header">
+            <h2>Welcome back!</h2>
+            <p>Login to your account</p>
+          </div>
 
-        <div className="login-form">
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="tel"
@@ -242,15 +263,15 @@ export default function Login() {
               className="primary-btn"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Signing in..." : "Sign In"}
+              {isSubmitting ? "Signing in..." : "LOG IN"}
             </button>
           </form>
-        </div>
 
-        <div className="login-footer">
-          <p>Secure access to your store operations</p>
+          <div className="login-footer">
+            <p>Don't have an account? <span style={{color: '#fbbf24', cursor: 'pointer'}}>Sign up</span></p>
+          </div>
         </div>
-      </section>
+      </div>
     </main>
   );
 }
