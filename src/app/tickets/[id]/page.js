@@ -142,6 +142,14 @@ export default function TicketDetail() {
               <span>{ticket.customer?.name || 'Unknown'}</span>
             </div>
             <div className="info-row">
+              <span>Customer Phone:</span>
+              <span>{ticket.customer?.phone || 'N/A'}</span>
+            </div>
+            <div className="info-row">
+              <span>Customer ID:</span>
+              <span>{ticket.customer?._id || 'N/A'}</span>
+            </div>
+            <div className="info-row">
               <span>Created:</span>
               <span>{new Date(ticket.createdAt).toLocaleDateString()}</span>
             </div>

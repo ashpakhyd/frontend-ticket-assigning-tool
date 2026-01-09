@@ -105,7 +105,7 @@ export default function TicketsPage() {
                 </div>
                 
                 <div className="ticket-meta">
-                  <span><strong>ID:</strong> {t.customer?._id || 'N/A'}</span>
+                  <span><strong>ID:</strong> {t.customer?._id?.slice(0, 8) + '...' || 'N/A'}</span>
                 </div>
               </div>
 
