@@ -15,18 +15,20 @@ import Loader from "@/components/Loader";
 import TicketAttachment from "@/components/TicketAttachment";
 import TicketComments from "@/components/TicketComments";
 
+import { MdAcUnit, MdKitchen, MdLocalLaundryService, MdTv, MdWaterDrop, MdMicrowave, MdDining, MdShower, MdAir, MdOutdoorGrill, MdBuild } from "react-icons/md";
+
 // Appliance icons mapping
 const applianceIcons = {
-  'AC': '❄️',
-  'Refrigerator': '🧊',
-  'Washing Machine': '👕',
-  'TV': '📺',
-  'Water Purifier': '💧',
-  'Microwave': '🔥',
-  'Dishwasher': '🍽️',
-  'Geyser': '🚿',
-  'Kitchen Chimney': '💨',
-  'Oven': '🔥'
+  'AC': <MdAcUnit />,
+  'Refrigerator': <MdKitchen />,
+  'Washing Machine': <MdLocalLaundryService />,
+  'TV': <MdTv />,
+  'Water Purifier': <MdWaterDrop />,
+  'Microwave': <MdMicrowave />,
+  'Dishwasher': <MdDining />,
+  'Geyser': <MdShower />,
+  'Kitchen Chimney': <MdAir />,
+  'Oven': <MdOutdoorGrill />
 };
 
 export default function TicketDetail() {
@@ -44,7 +46,7 @@ export default function TicketDetail() {
 
   const getApplianceIcon = (title) => {
     const appliance = Object.keys(applianceIcons).find(key => title?.includes(key));
-    return appliance ? applianceIcons[appliance] : '🔧';
+    return appliance ? applianceIcons[appliance] : <MdBuild />;
   };
 
   if (!ticket) return <Loader />;

@@ -6,18 +6,20 @@ import { useGetAllTicketsQuery } from "@/store/api/ticketApi";
 import { useState, useMemo } from "react";
 import Link from "next/link";
 
+import { MdAcUnit, MdKitchen, MdLocalLaundryService, MdTv, MdWaterDrop, MdMicrowave, MdDining, MdShower, MdAir, MdOutdoorGrill, MdBuild, MdAdd } from "react-icons/md";
+
 // Appliance icons mapping
 const applianceIcons = {
-  'AC': '❄️',
-  'Refrigerator': '🧊',
-  'Washing Machine': '👕',
-  'TV': '📺',
-  'Water Purifier': '💧',
-  'Microwave': '🔥',
-  'Dishwasher': '🍽️',
-  'Geyser': '🚿',
-  'Kitchen Chimney': '💨',
-  'Oven': '🔥'
+  'AC': <MdAcUnit />,
+  'Refrigerator': <MdKitchen />,
+  'Washing Machine': <MdLocalLaundryService />,
+  'TV': <MdTv />,
+  'Water Purifier': <MdWaterDrop />,
+  'Microwave': <MdMicrowave />,
+  'Dishwasher': <MdDining />,
+  'Geyser': <MdShower />,
+  'Kitchen Chimney': <MdAir />,
+  'Oven': <MdOutdoorGrill />
 };
 
 export default function TicketsPage() {
@@ -47,7 +49,7 @@ export default function TicketsPage() {
 
   const getApplianceIcon = (title) => {
     const appliance = Object.keys(applianceIcons).find(key => title?.includes(key));
-    return appliance ? applianceIcons[appliance] : '🔧';
+    return appliance ? applianceIcons[appliance] : <MdBuild />;
   };
 
   return (
@@ -116,7 +118,7 @@ export default function TicketsPage() {
           ))}
         </section>
 
-        <Link href="/tickets/create" className="fab">＋</Link>
+        <Link href="/tickets/create" className="fab"><MdAdd /></Link>
       </main>
     </ProtectedRoute>
   );

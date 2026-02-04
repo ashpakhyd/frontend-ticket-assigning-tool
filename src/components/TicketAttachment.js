@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { MdAttachFile, MdUpload, MdClose, MdInsertDriveFile } from "react-icons/md";
 
 export default function TicketAttachment({ ticketId }) {
   const [attachments, setAttachments] = useState([]);
@@ -18,7 +19,6 @@ export default function TicketAttachment({ ticketId }) {
 
     setIsUploading(true);
     const reader = new FileReader();
-    
     reader.onload = () => {
       const attachment = {
         id: Date.now().toString(),
@@ -35,11 +35,9 @@ export default function TicketAttachment({ ticketId }) {
       
       // Send only ID to backend
       console.log('Sending attachment ID to backend:', attachment.id);
-      
       setIsUploading(false);
       e.target.value = '';
     };
-
     reader.readAsDataURL(file);
   };
 
@@ -60,7 +58,7 @@ export default function TicketAttachment({ ticketId }) {
   return (
     <div className="attachments-section">
       <h3>Attachments ({attachments.length})</h3>
-
+      
       <div className="upload-area">
         <input
           type="file"
@@ -70,7 +68,11 @@ export default function TicketAttachment({ ticketId }) {
           className="file-input"
         />
         <label htmlFor="file-upload" className="upload-btn">
-          {isUploading ? '📤 Uploading...' : '📎 Add Attachment'}
+          {isUploading ? (
+            <><MdUpload /> Uploading...</>
+          ) : (
+            <><MdAttachFile /> Add Attachment</>
+          )}
         </label>
       </div>
 
@@ -81,7 +83,7 @@ export default function TicketAttachment({ ticketId }) {
               {att.type.startsWith('image/') ? (
                 <img src={att.data} alt={att.name} className="attachment-preview" />
               ) : (
-                <div className="file-icon">📄</div>
+                <div className="file-icon"><MdInsertDriveFile /></div>
               )}
               <div className="attachment-info">
                 <p className="attachment-name">{att.name}</p>
@@ -91,7 +93,7 @@ export default function TicketAttachment({ ticketId }) {
                 onClick={() => removeAttachment(att.id)}
                 className="remove-btn"
               >
-                ✕
+                <MdClose />
               </button>
             </div>
           ))}

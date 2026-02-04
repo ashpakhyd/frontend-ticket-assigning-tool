@@ -3,7 +3,17 @@ import { apiSlice } from "./apiSlice";
 export const ticketApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllTickets: builder.query({
-      query: () => "/tickets",
+      query: (params = {}) => {
+        const queryParams = new URLSearchParams();
+        if (params.status) queryParams.append('status', params.status);
+        if (params.limit) queryParams.append('limit', params.limit);
+        return `/tickets?${queryParams.toString()}`;
+      },
+      providesTags: ["Tickets"],
+    }),
+
+    getRecentTickets: builder.query({
+      query: () => "/tickets?status=New&limit=5",
       providesTags: ["Tickets"],
     }),
 
@@ -53,6 +63,7 @@ export const ticketApi = apiSlice.injectEndpoints({
 
 export const {
   useGetAllTicketsQuery,
+  useGetRecentTicketsQuery,
   useGetTicketByIdQuery,
   useCreateTicketMutation,
   useAssignTechnicianMutation,

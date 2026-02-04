@@ -1,3 +1,318 @@
+/* =========================
+   FLIPKART THEME HOME PAGE
+========================= */
+.flipkart-home {
+  min-height: 100vh;
+  background: #f1f3f6;
+  padding-bottom: 4rem;
+}
+
+.flipkart-header {
+  background: linear-gradient(135deg, #2874f0 0%, #1e5bc6 100%);
+  padding: 2rem 1rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.header-content {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.flipkart-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.flipkart-header p {
+  font-size: 1rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.section {
+  padding: 0 1rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  color: #212121;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+/* Quick Actions Grid */
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.flipkart-action-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #212121;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+  min-height: 100px;
+}
+
+.flipkart-action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border-color: #2874f0;
+}
+
+.flipkart-action-card .action-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #2874f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.flipkart-action-card .action-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  color: #212121;
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.flipkart-service-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #212121;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+  min-height: 80px;
+}
+
+.flipkart-service-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  border-color: #2874f0;
+}
+
+.flipkart-service-card .service-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ff9f00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.flipkart-service-card .service-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  color: #212121;
+  line-height: 1.2;
+}
+
+/* Recent Tickets Section */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.view-all-link {
+  color: #2874f0;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.view-all-link:hover {
+  color: #1e5bc6;
+}
+
+.recent-tickets-card {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.recent-tickets-card::-webkit-scrollbar {
+  width: 4px;
+}
+
+.recent-tickets-card::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.recent-tickets-card::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+.recent-tickets-card::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.ticket-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #f5f5f5;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s ease;
+}
+
+.ticket-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.ticket-item:hover {
+  background-color: #f8f9fa;
+}
+
+.ticket-info {
+  flex: 1;
+}
+
+.ticket-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.ticket-id {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #2874f0;
+  background: #e8f4fd;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+}
+
+.ticket-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #212121;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.ticket-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+}
+
+.ticket-customer {
+  font-size: 0.75rem;
+  color: #878787;
+  margin: 0;
+}
+
+.ticket-time {
+  font-size: 0.7rem;
+  color: #878787;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.ticket-status {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 10px;
+  text-transform: capitalize;
+  margin-left: 0.5rem;
+}
+
+.ticket-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.ticket-id-small {
+  font-size: 0.7rem;
+  color: #878787;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .flipkart-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .quick-actions-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
 /* Error Messages */
 .error {
   color: #dc2626;
@@ -323,7 +638,304 @@ body.animated-bg {
 }
 
 .app-content {
-  min-height: calc(100svh - 3.5rem);
+  min-height: calc(100svh - 4rem);
+  padding-bottom: 4rem;
+}
+
+/* =========================
+   BOTTOM TASKBAR
+========================= */
+.bottom-taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 50;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.taskbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  border-radius: 0.5rem;
+  min-width: 4rem;
+}
+
+.taskbar-item:hover {
+  color: #667eea;
+  background: #f3f4f6;
+}
+
+.taskbar-item.active {
+  color: #667eea;
+  background: #ede9fe;
+}
+
+.taskbar-icon {
+  font-size: 1.25rem;
+}
+
+.taskbar-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/* =========================
+   PROFILE PAGE
+========================= */
+.profile-container {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 1rem;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 1rem;
+  color: white;
+}
+
+.profile-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.profile-header p {
+  opacity: 0.9;
+}
+
+.profile-tabs {
+  display: flex;
+  background: white;
+  border-radius: 0.75rem;
+  padding: 0.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tab-btn:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.tab-btn.active {
+  background: #667eea;
+  color: white;
+}
+
+.profile-body {
+  margin-bottom: 2rem;
+}
+
+.profile-info-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-avatar-large {
+  width: 5rem;
+  height: 5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.profile-details h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.profile-role {
+  color: #667eea;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.profile-info-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-radius: 0.5rem;
+}
+
+.info-item label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.info-item span {
+  color: #6b7280;
+}
+
+.profile-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.settings-content {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section {
+  margin-bottom: 2rem;
+}
+
+.settings-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-item label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.setting-select {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background: white;
+}
+
+.about-content {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.about-section {
+  margin-bottom: 2rem;
+}
+
+.about-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.info-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.stat-card {
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+.stat-card h4 {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.profile-footer {
+  text-align: center;
+  padding: 1rem;
 }
 
 /* =========================

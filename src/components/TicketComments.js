@@ -5,11 +5,13 @@ import {
   useDeleteCommentMutation,
 } from "@/store/api/commentApi";
 import { useForm } from "react-hook-form";
+import { MdLock, MdDelete } from "react-icons/md";
 
 export default function TicketComments({ ticketId }) {
   const { data: comments, isLoading } = useGetCommentsQuery(ticketId);
   const [addComment, { isLoading: sending }] = useAddCommentMutation();
   const [deleteComment] = useDeleteCommentMutation();
+
   const { register, handleSubmit, reset, watch, setValue } = useForm({
     defaultValues: {
       message: "",
@@ -43,13 +45,13 @@ export default function TicketComments({ ticketId }) {
             <div className="comment-head">
               <b>{c.user?.name}</b>
               <span>{c.role}</span>
-              {c.isInternal && <span className="lock">🔒</span>}
+              {c.isInternal && <span className="lock"><MdLock /></span>}
               <button
                 onClick={() => handleDeleteComment(c._id)}
                 className="delete-comment-btn"
                 title="Delete comment"
               >
-                🗑️
+                <MdDelete />
               </button>
             </div>
             <p>{c.message}</p>
@@ -63,7 +65,6 @@ export default function TicketComments({ ticketId }) {
           placeholder="Write a comment…"
           {...register("message", { required: true })}
         />
-
         <div className="comment-form-actions">
           <label className="checkbox">
             <input
@@ -72,7 +73,6 @@ export default function TicketComments({ ticketId }) {
             />
             Internal note (Admin ↔ Technician)
           </label>
-
           <button
             type="submit"
             className="btn btn-primary"

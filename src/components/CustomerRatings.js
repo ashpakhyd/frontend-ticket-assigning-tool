@@ -1,5 +1,6 @@
 "use client";
 import { useGetCustomerRatingsQuery } from "@/store/api/dashboardApi";
+import { MdStar } from "react-icons/md";
 
 export default function CustomerRatings() {
   const { data, isLoading } = useGetCustomerRatingsQuery();
@@ -14,7 +15,7 @@ export default function CustomerRatings() {
           <div key={r._id} className="list-card">
             <p className="name">For: {r.technician?.name || 'Unknown Technician'}</p>
             <div className="meta">
-              <span>⭐ {r.rating}/5</span>
+              <span><MdStar style={{color: '#fbbf24', marginRight: '4px'}} />{r.rating}/5</span>
               <span>{new Date(r.createdAt).toLocaleDateString()}</span>
             </div>
             <p style={{fontSize: '0.85rem', color: '#6b7280', marginTop: '0.5rem'}}>

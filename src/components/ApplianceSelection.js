@@ -1,16 +1,17 @@
 import React from 'react';
+import { MdAcUnit, MdKitchen, MdLocalLaundryService, MdTv, MdWaterDrop, MdMicrowave, MdDining, MdShower, MdAir, MdOutdoorGrill } from 'react-icons/md';
 
 const appliances = [
-  { id: 'ac', name: 'AC', icon: '❄️' },
-  { id: 'refrigerator', name: 'Refrigerator', icon: '🧊' },
-  { id: 'washing-machine', name: 'Washing Machine', icon: '👕' },
-  { id: 'tv', name: 'TV', icon: '📺' },
-  { id: 'water-purifier', name: 'Water Purifier', icon: '💧' },
-  { id: 'microwave', name: 'Microwave', icon: '🔥' },
-  { id: 'dishwasher', name: 'Dishwasher', icon: '🍽️' },
-  { id: 'geyser', name: 'Geyser', icon: '🚿' },
-  { id: 'chimney', name: 'Kitchen Chimney', icon: '💨' },
-  { id: 'oven', name: 'Oven', icon: '🔥' },
+  { id: 'ac', name: 'AC', icon: <MdAcUnit /> },
+  { id: 'refrigerator', name: 'Refrigerator', icon: <MdKitchen /> },
+  { id: 'washing-machine', name: 'Washing Machine', icon: <MdLocalLaundryService /> },
+  { id: 'tv', name: 'TV', icon: <MdTv /> },
+  { id: 'water-purifier', name: 'Water Purifier', icon: <MdWaterDrop /> },
+  { id: 'microwave', name: 'Microwave', icon: <MdMicrowave /> },
+  { id: 'dishwasher', name: 'Dishwasher', icon: <MdDining /> },
+  { id: 'geyser', name: 'Geyser', icon: <MdShower /> },
+  { id: 'chimney', name: 'Kitchen Chimney', icon: <MdAir /> },
+  { id: 'oven', name: 'Oven', icon: <MdOutdoorGrill /> },
 ];
 
 const ApplianceSelection = ({ onSelect }) => {
