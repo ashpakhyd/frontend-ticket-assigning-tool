@@ -23,7 +23,8 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const res = await login(data).unwrap();
+      const loginData = { ...data, appType: "admin" };
+      const res = await login(loginData).unwrap();
       localStorage.setItem("token", res.token);
       dispatch(setCredentials({ token: res.token }));
       router.push("/");
@@ -44,7 +45,7 @@ export default function Login() {
       const response = await fetch('https://backend-ticket-assigning-tool.onrender.com/api/auth/forgot-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone: resetPhone })
+        body: JSON.stringify({ phone: resetPhone, appType: "admin" })
       });
       
       const data = await response.json();
@@ -79,7 +80,8 @@ export default function Login() {
         body: JSON.stringify({ 
           phone: resetPhone, 
           otp: otp, 
-          newPassword: newPassword 
+          newPassword: newPassword,
+          appType: "admin"
         })
       });
       
