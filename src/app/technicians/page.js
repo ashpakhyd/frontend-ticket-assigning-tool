@@ -17,14 +17,17 @@ export default function TechniciansPage() {
       const matchesSearch = (tech.name || '').toLowerCase().includes(search.toLowerCase()) ||
                            (tech.phone || '').includes(search) ||
                            (tech.email || '').toLowerCase().includes(search.toLowerCase());
-      const matchesSpecialty = !specialtyFilter || tech.specialty === specialtyFilter;
+      const matchesSpecialty = !specialtyFilter || 
+                           (tech.skills && tech.skills.includes(specialtyFilter)) ||
+                           tech.specialty === specialtyFilter;
       return matchesSearch && matchesSpecialty;
     });
   }, [technicians, search, specialtyFilter]);
 
   const specialties = useMemo(() => {
     if (!technicians) return [];
-    return [...new Set(technicians.map(t => t.specialty).filter(Boolean))];
+    const allSkills = technicians.flatMap(t => t.skills || [t.specialty]).filter(Boolean);
+    return [...new Set(allSkills)];
   }, [technicians]);
 
   return (
@@ -68,7 +71,7 @@ export default function TechniciansPage() {
                 <h3>{tech.name}</h3>
                 <p className="tech-phone">{tech.phone}</p>
                 <p className="tech-email">{tech.email}</p>
-                {tech.specialty && <p className="tech-specialty">{tech.specialty}</p>}
+                {tech.skills?.[0] || tech.specialty && <p className="tech-specialty">{tech.skills?.[0] || tech.specialty}</p>}
               </div>
 
               <div className="tech-stats">
