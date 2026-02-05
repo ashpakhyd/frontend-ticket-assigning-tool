@@ -4,6 +4,7 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import { useGetTechniciansQuery } from "@/store/api/ticketApi";
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import { MdPerson } from "react-icons/md";
 import "./technicians.css";
 
 export default function TechniciansPage() {
@@ -65,7 +66,22 @@ export default function TechniciansPage() {
 
           {filteredTechnicians.map((tech) => (
             <Link key={tech._id} href={`/technicians/${tech._id}`} className="technician-card">
-              <div className="tech-avatar">👨🔧</div>
+              <div className="tech-avatar">
+                {tech.profilePhoto ? (
+                  <img 
+                    src={tech.profilePhoto} 
+                    alt={tech.name}
+                    className="tech-profile-pic"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                ) : null}
+                <div className="tech-avatar-fallback" style={{ display: tech.profilePhoto ? 'none' : 'flex' }}>
+                  <MdPerson />
+                </div>
+              </div>
               
               <div className="tech-info">
                 <h3>{tech.name}</h3>
