@@ -1,12 +1,13 @@
 "use client";
 
 import "../tickets.css";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import {
   useAssignTechnicianMutation,
   useGetTechniciansQuery,
   useGetTicketByIdQuery,
   useUpdateTicketStatusMutation,
+  useDeleteTicketMutation,
 } from "@/store/api/ticketApi";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { useState } from "react";
@@ -33,11 +34,13 @@ const applianceIcons = {
 
 export default function TicketDetail() {
   const { id } = useParams();
+  const router = useRouter();
   const { data: ticket } = useGetTicketByIdQuery(id);
 
   const { data: technicians } = useGetTechniciansQuery();
   const [assign, { isLoading }] = useAssignTechnicianMutation();
   const [updateStatus, { isLoading: statusLoading }] = useUpdateTicketStatusMutation();
+  const [deleteTicket] = useDeleteTicketMutation();
   const [techId, setTechId] = useState("");
   const [showStatusModal, setShowStatusModal] = useState(false);
   const [showPriorityModal, setShowPriorityModal] = useState(false);
@@ -91,6 +94,18 @@ export default function TicketDetail() {
 
   const viewHistory = () => {
     alert('History feature coming soon!');
+  };
+
+  const handleDeleteTicket = async () => {
+    if (confirm('Are you sure you want to delete this ticket?')) {
+      try {
+        await deleteTicket(id).unwrap();
+        alert('Ticket deleted successfully');
+        router.push('/tickets');
+      } catch (error) {
+        alert('Failed to delete ticket');
+      }
+    }
   };
 
   return (
@@ -219,6 +234,7 @@ export default function TicketDetail() {
               <Button variant="danger" size="sm" onClick={() => setShowPriorityModal(true)}>Change Priority</Button>
               <Button variant="success" size="sm" onClick={contactCustomer}>Contact Customer</Button>
               <Button variant="ghost" size="sm" onClick={viewHistory}>View History</Button>
+              <Button variant="danger" size="sm" onClick={handleDeleteTicket}>Delete Ticket</Button>
             </div>
           </div>
         </div>
