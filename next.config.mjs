@@ -2,10 +2,8 @@ import withPWA from "next-pwa";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-
-  // 👇 THIS FIXES THE CRASH
-  turbopack: {}
+  reactStrictMode: false,
+  turbopack: {},
 };
 
 export default withPWA({

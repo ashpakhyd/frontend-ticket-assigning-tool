@@ -9,10 +9,24 @@ export const authApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    register: builder.mutation({
+      query: (data) => ({
+        url: "/auth/register",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    verifyOtp: builder.mutation({
+      query: (data) => ({
+        url: "/auth/verify-otp",
+        method: "POST",
+        body: data,
+      }),
+    }),
     profile: builder.query({
       query: () => "/auth/me",
     }),
   }),
 });
 
-export const { useLoginMutation, useProfileQuery } = authApi;
+export const { useLoginMutation, useRegisterMutation, useVerifyOtpMutation, useProfileQuery } = authApi;

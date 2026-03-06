@@ -35,8 +35,16 @@ export default function Login() {
   };
 
   const handleSendOtp = async () => {
-    if (!resetPhone || resetPhone.length < 10) {
-      alert("Please enter a valid phone number (min 10 digits)");
+    if (!resetPhone) {
+      alert("Phone number is required");
+      return;
+    }
+    if (resetPhone.length < 10) {
+      alert("Phone must be at least 10 digits");
+      return;
+    }
+    if (!/^[0-9]+$/.test(resetPhone)) {
+      alert("Only numbers allowed");
       return;
     }
     
@@ -63,11 +71,23 @@ export default function Login() {
   };
 
   const handleResetPassword = async () => {
-    if (!otp || otp.length !== 6) {
-      alert("Please enter a valid 6-digit OTP");
+    if (!otp) {
+      alert("OTP is required");
       return;
     }
-    if (!newPassword || newPassword.length < 6) {
+    if (otp.length !== 6) {
+      alert("OTP must be 6 digits");
+      return;
+    }
+    if (!/^[0-9]+$/.test(otp)) {
+      alert("OTP must contain only numbers");
+      return;
+    }
+    if (!newPassword) {
+      alert("New password is required");
+      return;
+    }
+    if (newPassword.length < 6) {
       alert("Password must be at least 6 characters");
       return;
     }
@@ -225,7 +245,13 @@ export default function Login() {
             <input
               type="tel"
               placeholder="Mobile number"
-              {...register("phone", { required: "Phone is required" })}
+              {...register("phone", { 
+                required: "Phone is required",
+                minLength: { value: 10, message: "Phone must be 10 digits" },
+                maxLength: { value: 10, message: "Phone must be 10 digits" },
+                pattern: { value: /^[0-9]+$/, message: "Only numbers allowed" }
+              })}
+              onInput={(e) => e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10)}
             />
             {errors.phone && <span className="error">{errors.phone.message}</span>}
 
@@ -233,7 +259,10 @@ export default function Login() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                {...register("password", { required: "Password is required" })}
+                {...register("password", { 
+                  required: "Password is required",
+                  minLength: { value: 6, message: "Password must be at least 6 characters" }
+                })}
               />
               <button
                 type="button"
@@ -269,7 +298,7 @@ export default function Login() {
           </form>
 
           <div className="login-footer">
-            <p>Don't have an account? <span style={{color: '#fbbf24', cursor: 'pointer'}}>Sign up</span></p>
+            <p>Don't have an account? <span style={{color: '#fbbf24', cursor: 'pointer'}} onClick={() => router.push("/register")}>Sign up</span></p>
           </div>
         </div>
       </div>
