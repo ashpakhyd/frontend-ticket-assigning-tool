@@ -1,7 +1,7 @@
 {
-  "name": "Store Management Admin",
-  "short_name": "StoreAdmin",
-  "description": "Store & Ticket Management PWA for Admins",
+  "name": "SD Admin",
+  "short_name": "SD Admin",
+  "description": "Ticket Management app for Admin only",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
