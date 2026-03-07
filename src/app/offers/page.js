@@ -130,7 +130,7 @@ export default function OffersPage() {
                         <div><MdIcons.MdCheckCircle style={{ verticalAlign: 'middle', marginRight: '4px' }} />{offer.currentRedemptions}/{offer.maxRedemptions}</div>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <div style={{ fontSize: '0.75rem', color: '#878787' }}>Valid: {new Date(offer.validFrom).toLocaleDateString()} - {new Date(offer.validTill).toLocaleDateString()}</div>
+                        <div style={{ fontSize: '0.75rem', color: '#878787' }}>Valid: {new Date(offer.validFrom).toLocaleString()} - {new Date(offer.validTill).toLocaleString()}</div>
                         <div style={{ display: 'flex', gap: '0.5rem' }}>
                           <button onClick={() => router.push(`/offers/${offer._id}`)} className="btn btn-primary btn-sm">View</button>
                           <button onClick={() => router.push(`/offers/create?edit=${offer._id}`)} className="btn btn-secondary btn-sm">Edit</button>

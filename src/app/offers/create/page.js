@@ -52,11 +52,21 @@ export default function CreateOfferPage() {
   useEffect(() => {
     if (editData?.offer) {
       const o = editData.offer;
+      const formatDateTime = (dateStr) => {
+        if (!dateStr) return "";
+        const date = new Date(dateStr);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+      };
       setFormData({
         title: o.title || "", description: o.description || "", category: o.category || "SERVICE", type: o.type || "OFFER",
-        price: o.price || { original: "", discounted: "", currency: "PKR" }, images: o.images || [""],
-        validFrom: o.validFrom ? new Date(o.validFrom).toISOString().slice(0, 16) : "",
-        validTill: o.validTill ? new Date(o.validTill).toISOString().slice(0, 16) : "",
+        price: o.price || { original: "", discounted: "", currency: "INR" }, images: o.images || [""],
+        validFrom: formatDateTime(o.validFrom),
+        validTill: formatDateTime(o.validTill),
         termsConditions: o.termsConditions || "", maxRedemptions: o.maxRedemptions || "",
         targetAudience: o.targetAudience || { customerType: "ALL", locations: [] },
         tags: o.tags || [], priority: o.priority || 1,
