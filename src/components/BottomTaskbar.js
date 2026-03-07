@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MdHome, MdConfirmationNumber, MdEngineering, MdPerson } from "react-icons/md";
+import { MdHome, MdConfirmationNumber, MdEngineering, MdPerson, MdPeople } from "react-icons/md";
 
 export default function BottomTaskbar() {
   const pathname = usePathname();
@@ -11,6 +11,7 @@ export default function BottomTaskbar() {
     { icon: <MdHome />, label: "Home", path: "/" },
     { icon: <MdConfirmationNumber />, label: "Tickets", path: "/tickets" },
     { icon: <MdEngineering />, label: "Technicians", path: "/technicians" },
+    { icon: <MdPeople />, label: "Customers", path: "/customers" },
     { icon: <MdPerson />, label: "Profile", path: "/profile" },
   ];
 
