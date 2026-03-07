@@ -27,7 +27,7 @@ export default function TechnicianDetail() {
         endpoint = 'verify';
       }
       
-      const response = await fetch(`http://localhost:5000/api/admin/technicians/${id}/${endpoint}`, {
+      const response = await fetch(`https://backend-ticket-assigning-tool.onrender.com/api/admin/technicians/${id}/${endpoint}`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
