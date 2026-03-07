@@ -25,6 +25,29 @@ export default function CreateOfferPage() {
 
   const [locationInput, setLocationInput] = useState("");
   const [tagInput, setTagInput] = useState("");
+  const [uploading, setUploading] = useState(false);
+
+  const uploadToCloudinary = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'ticket_uploads');
+    const response = await fetch('https://api.cloudinary.com/v1_1/dsrmkwxbm/image/upload', { method: 'POST', body: formData });
+    const data = await response.json();
+    return data.secure_url;
+  };
+
+  const handleImageUpload = async (e, index) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const url = await uploadToCloudinary(file);
+      updateImage(index, url);
+    } catch (err) {
+      alert('Upload failed');
+    }
+    setUploading(false);
+  };
 
   useEffect(() => {
     if (editData?.offer) {
@@ -135,12 +158,16 @@ export default function CreateOfferPage() {
             <div style={sectionStyle}>
               <h3 style={headingStyle}><MdIcons.MdImage style={{ color: '#ff9f00' }} /> Images</h3>
               {formData.images.map((img, i) => (
-                <div key={i} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                  <input type="url" value={img} onChange={(e) => updateImage(i, e.target.value)} style={{ ...inputStyle, flex: 1 }} placeholder="https://example.com/image.jpg" />
-                  <button type="button" onClick={() => removeImage(i)} className="btn btn-danger btn-sm"><MdIcons.MdDelete /></button>
+                <div key={i} style={{ marginBottom: '0.75rem' }}>
+                  <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                    <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, i)} style={{ flex: 1, padding: '0.5rem', border: '1px solid #e0e0e0', borderRadius: '4px' }} />
+                    <button type="button" onClick={() => removeImage(i)} className="btn btn-danger btn-sm"><MdIcons.MdDelete /></button>
+                  </div>
+                  {img && <img src={img} alt="Preview" style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e0e0e0' }} />}
                 </div>
               ))}
-              <button type="button" onClick={addImageField} className="btn btn-primary btn-sm"><MdIcons.MdAdd /> Add Image</button>
+              <button type="button" onClick={addImageField} className="btn btn-primary btn-sm" disabled={uploading}><MdIcons.MdAdd /> Add Image</button>
+              {uploading && <span style={{ marginLeft: '0.5rem', color: '#2874f0' }}>Uploading...</span>}
             </div>
 
             <div style={sectionStyle}>

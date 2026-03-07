@@ -113,6 +113,16 @@ export default function OfferDetailsPage({ params }) {
           {activeTab === "overview" && (
             <div style={{ background: 'white', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
               <h2 className="section-title">Offer Details</h2>
+              {offer.images?.length > 0 && (
+                <div style={{ marginBottom: '1rem' }}>
+                  <p style={{ fontSize: '0.85rem', color: '#878787', marginBottom: '0.5rem' }}>Images</p>
+                  <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                    {offer.images.map((img, i) => (
+                      <img key={i} src={img} alt={`Offer ${i + 1}`} style={{ width: '150px', height: '150px', objectFit: 'cover', borderRadius: '8px', cursor: 'pointer', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }} onClick={() => window.open(img, '_blank')} />
+                    ))}
+                  </div>
+                </div>
+              )}
               <div style={{ marginBottom: '1rem' }}>
                 <p style={{ fontSize: '0.85rem', color: '#878787', marginBottom: '0.25rem' }}>Description</p>
                 <p style={{ color: '#212121' }}>{offer.description}</p>
