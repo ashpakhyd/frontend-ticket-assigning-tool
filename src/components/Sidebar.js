@@ -56,6 +56,14 @@ export default function Sidebar({ open, onClose }) {
             <span className="nav-icon"><MdIcons.MdPeople /></span>
             <span>Customers</span>
           </Link>
+          <Link href="/offers" onClick={onClose} className="nav-item">
+            <span className="nav-icon"><MdIcons.MdLocalOffer /></span>
+            <span>Offers</span>
+          </Link>
+          <Link href="/offers/redemptions" onClick={onClose} className="nav-item">
+            <span className="nav-icon"><MdIcons.MdQrCodeScanner /></span>
+            <span>Redemptions</span>
+          </Link>
         </nav>
 
         <div className="sidebar-footer">
